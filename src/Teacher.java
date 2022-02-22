@@ -9,13 +9,13 @@
  */
 public class Teacher extends Person {
   private int numCourses;
-  private String[] courses;
+  private Subject[] courses;
   private final int MAX_COURSES = 5;
 
   Teacher(String name, String address) {
     super(name, address);
     this.numCourses = 0;
-    this.courses = new String[this.MAX_COURSES];
+    this.courses = new Subject[this.MAX_COURSES];
   }
 
   // can add and remove courses
@@ -26,9 +26,10 @@ public class Teacher extends Person {
    * @param course - the name of the course
    * @return return false if the course exists
    */
-  public boolean addCourse(String course) {
+  public boolean addCourse(Subject course) {
+    course.setCourseName(course.getCourseName().trim());
     for (int i = 0; i < numCourses; ++i)
-      if (this.courses[i].equals(course))
+      if (this.courses[i].getCourseName().equals(course.getCourseName()))
         return false;
 
     this.courses[numCourses++] = course;
@@ -39,20 +40,19 @@ public class Teacher extends Person {
    * @param course String name of the course
    * @return return if the operation was successful
    */
-  public boolean removeCourse(String course) {
+  public boolean removeCourse(Subject course) {
+    course.setCourseName(course.getCourseName().trim());
     int removedOffset = 0;
-    boolean found = false;
     for (int i = 0; i < numCourses; ++i) {
-      if (this.courses[i].equals(course)) {
+      if (this.courses[i].getCourseName().equals(course.getCourseName())) {
         removedOffset++;
-        found = true;
       }
 
       this.courses[i] = this.courses[i + removedOffset];
     }
     numCourses -= removedOffset;
 
-    return found;
+    return removedOffset > 0;
   }
 
   /**
