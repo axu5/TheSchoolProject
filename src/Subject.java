@@ -8,10 +8,10 @@
  */
 public class Subject {
   private String courseName;
-  private final int MAX_STUDENTS = 30;
-  private Student[] students = new Student[this.MAX_STUDENTS];
-  private int numStudents;
   private Teacher teacher;
+  private Student[] students = new Student[this.MAX_STUDENTS];
+  private final int MAX_STUDENTS = 30;
+  private int numStudents;
 
   Subject(Teacher teacher, String course) {
     // creates reference, any edits to "this" object will be applied in the teacher
@@ -54,7 +54,7 @@ public class Subject {
    * @param student student object
    * @return return if the operation was successful
    */
-  public boolean removeCourse(Student student) {
+  public boolean removeStudent(Student student) {
     int removedOffset = 0;
     for (int i = 0; i < numStudents; ++i) {
       if (this.students[i].getName().equals(student.getName())) {
