@@ -10,14 +10,14 @@ public class Student extends Person {
   // private instance variables/ attributes
   private int numCourses; // number of courses taken so far
   private final int MAX_COURSES = 30; // maximum number of courses
-  private String[] courses; // course names
+  private Subject[] courses; // course names
   private int[] grades; // grade for the corresponding course names
 
   // Constructor
   public Student(String name, String address) {
     super(name, address);
     this.numCourses = 0;
-    this.courses = new String[this.MAX_COURSES];
+    this.courses = new Subject[this.MAX_COURSES];
     this.grades = new int[MAX_COURSES];
   }
 
@@ -32,7 +32,7 @@ public class Student extends Person {
   }
 
   // Add a course and its grade - No validation in this method
-  public void addCourseGrade(String course, int grade) {
+  public void addCourseGrade(Subject course, int grade) {
     // complete code
     // make sure to update counter
 
@@ -42,17 +42,44 @@ public class Student extends Person {
     this.numCourses++;
   }
 
+  public double getCourseGrade(String course) {
+    for (int i = 0; i < this.numCourses; ++i) {
+      String currentSubjectName = this.courses[i].getCourseName();
+      if (currentSubjectName.equals(course)) {
+        return this.grades[i];
+      }
+    }
+
+    return 0;
+  }
+
+  public void removeCourse(Subject course) {
+    int removedOffset = 0;
+    for (int i = 0; i < this.numCourses - removedOffset; ++i) {
+      String currentSubjectName = this.courses[i].getCourseName();
+      if (currentSubjectName.equals(course.getCourseName())) {
+        removedOffset++;
+      }
+
+      this.courses[i] = this.courses[i + removedOffset];
+    }
+
+    this.numCourses -= removedOffset;
+  }
+
   // Print all courses taken and their grade
   public void printGrades() {
     // complete code
     // use counter for loop
-    for (int i = 0; i < this.courses.length; ++i) {
-      System.out.printf("COURSE: %s - GRADE: %n\n", this.courses[i], this.grades[i]);
+    for (int i = 0; i < this.numCourses; ++i) {
+      String currentCourseName = this.courses[i].getCourseName();
+      int currentGrade = this.grades[i];
+      System.out.printf("COURSE: %s - GRADE: %s\n", currentCourseName, currentGrade);
     }
   }
 
   // Get the value of one course in the list of courses
-  public String getCourse(int index) {
+  public Subject getCourse(int index) {
     return this.courses[index];
   }
 
