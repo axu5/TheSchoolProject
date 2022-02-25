@@ -63,11 +63,11 @@ public class Subject {
     // object
     // teacher.adxdCourse(this);
     this.teacher = teacher;
-    this.courseName = courseName;
+    this.courseName = courseName.trim();
   }
 
   Subject(String course) {
-    this.courseName = course;
+    this.courseName = course.trim();
   }
 
   public String getCourseName() {
@@ -75,7 +75,7 @@ public class Subject {
   }
 
   public void setCourseName(String courseName) {
-    this.courseName = courseName;
+    this.courseName = courseName.trim();
   }
 
   public Teacher getTeacher() {
@@ -137,7 +137,7 @@ public class Subject {
       }
 
       // replace current index with an item from further on in the array.
-      this.students[i] = this.students[i + removedOffset];
+      this.students[i] = i <= numStudents - removedOffset ? this.students[i + removedOffset] : null;
     }
 
     // remove the amount of students removed.

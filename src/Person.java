@@ -11,12 +11,16 @@ public class Person {
   private String address;
 
   public Person(String name, String address) {
-    this.name = name;
-    this.address = address;
+    this.name = name.trim();
+    this.address = address.trim();
   }
 
   public String getName() {
     return this.name;
+  }
+
+  public void setName(String name) {
+    this.name = name.trim();
   }
 
   public String getAddress() {
@@ -24,7 +28,7 @@ public class Person {
   }
 
   public void setAddress(String address) {
-    this.address = address;
+    this.address = address.trim();
   }
 
   public String toString() {

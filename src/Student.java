@@ -62,6 +62,7 @@ public class Student extends Person {
       }
 
       this.courses[i] = this.courses[i + removedOffset];
+      this.courses[i] = i <= numCourses - removedOffset ? this.courses[i + removedOffset] : null;
     }
 
     this.numCourses -= removedOffset;

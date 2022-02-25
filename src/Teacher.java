@@ -27,7 +27,6 @@ public class Teacher extends Person {
    * @return return false if the course exists
    */
   public boolean addCourse(Subject course) {
-    // course.setCourseName(course.getCourseName().trim());
     for (int i = 0; i < numCourses; ++i)
       if (this.courses[i].getCourseName().equals(course.getCourseName()))
         return false;
@@ -41,14 +40,13 @@ public class Teacher extends Person {
    * @return return if the operation was successful
    */
   public boolean removeCourse(Subject course) {
-    // course.setCourseName(course.getCourseName().trim());
     int removedOffset = 0;
     for (int i = 0; i < numCourses; ++i) {
       if (this.courses[i].getCourseName().equals(course.getCourseName())) {
         removedOffset++;
       }
 
-      this.courses[i] = this.courses[i + removedOffset];
+      this.courses[i] = i <= numCourses - removedOffset ? this.courses[i + removedOffset] : null;
     }
     numCourses -= removedOffset;
 
