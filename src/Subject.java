@@ -156,9 +156,6 @@ public class Subject {
   public double getAverageGrade() {
     double total = 0;
 
-    // O(n^2) time because of subjects loop inside get course grade.
-    // Teacher didn't mind, but it is something to keep in mind if I want to
-    // refactor.
     for (int i = 0; i < numStudents; ++i) {
       // add everything to total
       Student current = this.students[i];
